@@ -72,11 +72,12 @@ int to_binary(int num)
  * Return: none
  */
 
-void type_handler(int i, int *counter, const char * const format, va_list list)
+void type_handler(int *i, int *counter, const char * const format, va_list list)
 {
 	char *str;
+	int j = *i;
 
-	switch (format[i])
+	switch (format[j])
 	{
 		case 'c':
 			_putchar(va_arg(list, int));
@@ -86,10 +87,6 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 			str = va_arg(list, char *);
 			(*counter) += str_print(str);
 			break;
-		case '%':
-			_putchar('%');
-			(*counter)++;
-			break;
 		case 'd':
 			(*counter) += num_print(va_arg(list, int));
 			break;
@@ -98,10 +95,6 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 			break;
 		case 'b':
 			(*counter) += to_binary(va_arg(list, int));
-			break;
-		default:
-			_putchar(format[i]);
-			(*counter)++;
 			break;
 	}
 }
@@ -117,25 +110,31 @@ int _printf(const char * const format, ...)
 {
 	va_list list;
 	int i = 0, counter = 0;
+	int *ptr_count = &count;
+
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
 	va_start(list, format);
 
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			type_handler(i, &counter, format, list);
-		}
-		else
+		if (format[i] != '%')
 		{
 			_putchar(format[i]);
-			counter++;
+			(*ptr_count)++;
+		}
+		else if (format[i] == '%' && format[i+1] != '%')
+		{
+			i++;
+			type_handler(&i, ptr_count, format, list);	
+		}
+		else if (format[i] == '%' && format[i+1] == '%')
+		{
+			i++;
+			_putchar(format[i]);
+			(*ptr_count)++;
 		}
 		i++;
 	}
