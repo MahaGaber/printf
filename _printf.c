@@ -39,27 +39,6 @@ int num_print(int num)
 	return (counter);
 }
 
-/**
- * str_print - it format string
- * @str:pointer
- *Return: number of characters
- */
-
-int str_print(char *str)
-{
-	int i = 0;
-
-	if (str == NULL)
-		str = "";
-
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
-}
-
 
 /**
  * to_binary - converts number to binary and also prints
@@ -119,6 +98,10 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 			break;
 		case 'b':
 			(*counter) += to_binary(va_arg(list, int));
+			break;
+		default:
+			_putchar(format[i]);
+			(*counter)++;
 			break;
 	}
 }
