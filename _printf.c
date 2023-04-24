@@ -39,29 +39,24 @@ int num_print(int num)
 	return (counter);
 }
 
-
 /**
- * to_binary - converts number to binary and also prints
- * @num: number to be converted
- * Return: number of characters printed
+ * str_print - it format string
+ * @str:pointer
+ *Return: number of characters
  */
 
-int to_binary(int num)
+int str_print(char *str)
 {
-	int digit[10], i, counter = 0;
+	int i = 0;
 
-	for (i = 0; num > 0; i++)
+	while (str[i])
 	{
-		digit[i] = num % 2;
-		num = num / 2;
+		_putchar(str[i]);
+		i++;
 	}
-	for (i = i - 1; i >= 0; i--)
-	{
-		num_print(digit[i]);
-		counter++;
-	}
-	return (counter);
+	return (i);
 }
+
 
 /**
  * type_handler - it prints the appropirate datatype
@@ -99,11 +94,6 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 		case 'b':
 			(*counter) += to_binary(va_arg(list, int));
 			break;
-		default:
-			_putchar('%');
-			_putchar(format[i]);
-			(*counter)++;
-			break;
 	}
 }
 
@@ -119,19 +109,15 @@ int _printf(const char * const format, ...)
 	va_list list;
 	int i = 0, counter = 0;
 
-
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 
 	va_start(list, format);
-
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '\0')
-				return (-1);
 			type_handler(i, &counter, format, list);
 		}
 		else
