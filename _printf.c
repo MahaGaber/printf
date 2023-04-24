@@ -49,6 +49,9 @@ int str_print(char *str)
 {
 	int i = 0;
 
+	if (str == NULL)
+		str = "";
+
 	while (str[i])
 	{
 		_putchar(str[i]);
@@ -56,6 +59,7 @@ int str_print(char *str)
 	}
 	return (i);
 }
+
 
 /**
  * to_binary - converts number to binary and also prints
@@ -140,6 +144,10 @@ int _printf(const char * const format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+
+			if (format[i] == '\0')
+				return (counter);
+
 			type_handler(i, &counter, format, list);
 		}
 		else
