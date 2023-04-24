@@ -10,16 +10,24 @@ int to_binary(int n)
 {
 	int digit[32], i = 0, j;
 
-	while (n > 0)
+	if (n > 0)
 	{
+		while (n > 0)
+		{
 		digit[i] = n % 2;
 		n = n / 2;
 		i++;
-	}
+		}
 
-	for (j = i - 1; j >= 0; j--)
-	{
+		for (j = i - 1; j >= 0; j--)
+		{
 		num_print(digit[j]);
+		}
+	}
+	else
+	{
+		_putchar('0');
+		return (1);
 	}
 	return (i);
 }
