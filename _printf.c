@@ -1,16 +1,5 @@
 #include "main.h"
-/**
- * char_print - it format string
- * @ch:character
- *Return:1
- */
-int char_print(char ch)
-{
-    if (!ch)
-        ch = 0;
-_putchar(ch);
-return (1);
-}
+
 /**
  * num_print - prints integer numbers
  * @num: the number to printed
@@ -86,13 +75,12 @@ int to_binary(int num)
 void type_handler(int i, int *counter, const char * const format, va_list list)
 {
 	char *str;
-    	int ch;
-    
+
 	switch (format[i])
 	{
 		case 'c':
-		     ch = va_arg(list, int);
-			(*counter) += char_print(ch);
+			_putchar(va_arg(list, int));
+			(*counter)++;
 			break;
 		case 's':
 			str = va_arg(list, char *);
