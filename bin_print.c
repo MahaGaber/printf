@@ -2,25 +2,26 @@
 
 /**
  * to_binary - converts number to binary and also prints
- * @num: number to be converted
+ * @n: number to be converted
  * Return: number of characters printed
  */
 
-int to_binary(int num)
+int to_binary(int n)
 {
-	int digit[10], i, counter = 0;
+	int digit[32], i = 0, counter = 0;
 
-	for (i = 0; num > 0; i++)
+	while (n > 0)
 	{
-		digit[i] = num % 2;
-		num = num / 2;
+		digit[i] = n % 2;
+		n = n / 2;
+		i++;
 	}
-	for (i = i - 1; i >= 0; i--)
+
+	for (int j = i - 1; j >= 0; j--)
 	{
-		num_print(digit[i]);
-		counter++;
+		num_print(digit[j]);
 	}
-	return (counter);
+	return (i);
 }
 
 
