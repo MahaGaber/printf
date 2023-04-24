@@ -128,12 +128,13 @@ int _printf(const char * const format, ...)
 	{
 		if (format[i] == '%')
 		{
-			i++;
-
-			if (format[i] == '\0')
+			if (format[i] == '%' && format[i + 1] == '\0')
 				return (-1);
-			counter++;
-			type_handler(i, &counter, format, list);
+			if (format[i] == '%' && format[i + 1] != '\0')
+			{
+				i++;
+				type_handler(i, &counter, format, list);
+			}
 		}
 		else
 		{
