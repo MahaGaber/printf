@@ -118,10 +118,13 @@ int _printf(const char * const format, ...)
 	va_list list;
 	int i = 0, counter = 0;
 
-	if (format == NULL)
+	va_start(list, format);
+
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
 
-	va_start(list, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
