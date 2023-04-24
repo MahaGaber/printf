@@ -130,10 +130,6 @@ int _printf(const char * const format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-
-			if (format[i] == '\0')
-				return (counter);
-
 			type_handler(i, &counter, format, list);
 		}
 		else
