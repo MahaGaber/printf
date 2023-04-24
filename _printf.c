@@ -131,7 +131,7 @@ int _printf(const char * const format, ...)
 			i++;
 
 			if (format[i] == '\0')
-				return (counter);
+				return (-1);
 
 			type_handler(i, &counter, format, list);
 		}
