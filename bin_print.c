@@ -8,7 +8,7 @@
 
 int to_binary(int n)
 {
-	int digit[32], i = 0, counter = 0;
+	int digit[32], i = 0, j;
 
 	while (n > 0)
 	{
@@ -17,7 +17,7 @@ int to_binary(int n)
 		i++;
 	}
 
-	for (int j = i - 1; j >= 0; j--)
+	for (j = i - 1; j >= 0; j--)
 	{
 		num_print(digit[j]);
 	}
