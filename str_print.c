@@ -8,17 +8,14 @@
 
 int str_print(char *str)
 {
-	int i = 0;
+	char *a = str;
 
 	if (str == NULL)
 		str = "(null)";
+	while (*str)
+		_putchar(*str++);
+	return (str - a);
 
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
 }
 
 
