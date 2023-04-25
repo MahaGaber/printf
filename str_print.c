@@ -3,19 +3,21 @@
 /**
  * str_print - it format string
  * @str:pointer
- *Return: number of characters
+ *return: number of characters
  */
 
 int str_print(char *str)
 {
-	char *a = str;
+	int i =0;
 
-	if (str == NULL)
+	if (str == null)
 		str = "(null)";
-	while (*str)
-		_putchar(*str++);
-	return (str - a);
-
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }
 
 
