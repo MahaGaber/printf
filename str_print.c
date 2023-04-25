@@ -3,14 +3,14 @@
 /**
  * str_print - it format string
  * @str:pointer
- *return: number of characters
+ *Return: number of characters
  */
 
 int str_print(char *str)
 {
-	int i =0;
+	int i = 0;
 
-	if (str == null)
+	if (str == NULL)
 		str = "(null)";
 	while (str[i])
 	{

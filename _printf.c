@@ -36,6 +36,13 @@ void type_handler(int i, int *counter, const char * const format, va_list list)
 		case 'b':
 			(*counter) += to_binary(va_arg(list, int));
 			break;
+		case 'X':
+			(*counter) += to_hexa(va_arg(list, int));
+			break;
+		case 'r':
+			str = va_arg(list, char *);
+			(*counter) += to_reverse(str);
+			break;
 		default:
 			_putchar(format[i]);
 			(*counter)++;
