@@ -20,12 +20,12 @@ int to_Rot13(char *str)
 			if (str[i] >= 'A' && str[i] <= 'Z')
 			{
 				index = str[i] - 65;
-				count += _putchar(str[i]);
+				count += _putchar(arr_upper[index]);
 			}
 			else if (str[i] >= 'a' && str[i] <= 'z')
 			{
 				index = str[i] - 97;
-				count += _putchar(str[i]);
+				count += _putchar(arr_lower[index]);
 			}
 			else
 				count += _putchar(str[i]);
